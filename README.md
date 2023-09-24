@@ -5,7 +5,7 @@ This turns some input from your VR controllers into midi output, sent to the mid
 
 So what I do with this is I installed [loopMIDI](https://www.tobias-erichsen.de/software/loopmidi.html), which just takes whatever midi output it's given, and sends it as input, I choose to send the vr midi output to this loopback midi, and in a program like fl studio, I enable the loopback midi device's input ONLY (not output. That'll cause feedback).
 
-Pressing anything on your right controller playes a note.<br>
+Pressing anything on your right controller plays middle C.<br>
 Releasing what you pressed releases the note 🤯
 
 And then there's two motion controls: the "bow", and the "finger placement"
