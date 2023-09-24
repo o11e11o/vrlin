@@ -1,7 +1,7 @@
 # vrlin
 um I guess more like a theremin but idk the right hand feels more like using a bow, and VRLin sounds better than VReremin.
 
-## [how to set it up]()
+## [how to set it up](setup.md)
 
 ## stuff about it:
 This turns some input from your VR controllers into midi output, sent to the midi device of your choice.
