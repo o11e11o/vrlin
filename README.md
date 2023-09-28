@@ -1,7 +1,7 @@
 # vrlin
 turns some input from your VR controllers into midi output, sent to the midi device of your choice.
 
-to use as midi input you could install [loopMIDI](https://www.tobias-erichsen.de/software/loopmidi.html), which just takes whatever midi output it's given, and sends it as input, choose to send the vr midi output to this loopback midi, and in a program like fl studio, enable the loopback midi device's input ONLY (not output. That'll cause feedback).
+to use it as midi input you could install [loopMIDI](https://www.tobias-erichsen.de/software/loopmidi.html), which just takes whatever midi output it's given, and sends it as input, choose to send the vr midi output to this loopback midi, and in a program like fl studio, enable the loopback midi device's input ONLY (not output. That'll cause feedback).
 
 Pressing anything on your right controller plays middle C.<br>
 Releasing what you pressed releases the note
