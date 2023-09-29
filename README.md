@@ -5,7 +5,7 @@ Discord: asgrk
 ## what is this
 turns some input from your VR controllers into midi output, sent to the midi device of your choice.
 
-to run it: download vrlin.exe and openvr_api.dll, place them wherever as long as they're both in the same folder, start steamvr, and launch vrlin.exe. It should give you a numbered list of midi devices to send output to.
+to run it: download vrlin.exe and openvr_api.dll, place them wherever as long as they're both in the same folder, start steamvr (it won't work unless steamvr is already running), and launch vrlin.exe. It should give you a numbered list of midi devices to send output to.
 
 to use it as midi input you could install [loopMIDI](https://www.tobias-erichsen.de/software/loopmidi.html), which just takes whatever midi output it's given and sends it as input, choose to send the vr midi output to this loopback midi, and in a program like fl studio, enable the loopback midi device's input ONLY (not output. That'll cause feedback).
 
