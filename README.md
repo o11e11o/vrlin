@@ -1,5 +1,6 @@
 # vrlin
-erm I just made it for myself n later decided to dump it here. Feel free to ask for help if it's not working for you I guess idk
+erm I just made it for myself n later decided to dump it here. Feel free to ask for help if it's not working for you
+
 Discord: asgrk
 
 turns some input from your VR controllers into midi output, sent to the midi device of your choice.
