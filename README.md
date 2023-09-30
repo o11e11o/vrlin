@@ -1,12 +1,18 @@
-# vrlin
-um I guess more like a theremin but idk the right hand feels more like using a bow, and VRLin sounds better than VReremin.
+erm I just made it for myself n later decided to dump it here. Feel free to ask for help if it's not working for you
 
-This turns some input from your VR controllers into midi output, sent to the midi device of your choice.
+Discord: asgrk
 
-So what I do with this is I installed [loopMIDI](https://www.tobias-erichsen.de/software/loopmidi.html), which just takes whatever midi output it's given, and sends it as input, I choose to send the vr midi output to this loopback midi, and in a program like fl studio, I enable the loopback midi device's input ONLY (not output. That'll cause feedback).
+## what is this
+turns some input from your VR controllers into midi output, sent to the midi device of your choice.
+
+to run it: download vrlin.exe and openvr_api.dll, place them wherever as long as they're both in the same folder, start steamvr (it won't work unless steamvr is already running), and launch vrlin.exe. It should give you a numbered list of midi devices to send output to.
+
+It doesn't override input so like if you're in the steam vr home you can still accidentally press stuff while you're using the vrlin.
+
+to use it as midi input you could install [loopMIDI](https://www.tobias-erichsen.de/software/loopmidi.html), which just takes whatever midi output it's given and sends it as input, choose to send the vr midi output to this loopback midi, and in a program like fl studio, enable the loopback midi device's input ONLY (not output. That'll cause feedback).
 
 Pressing anything on your right controller plays middle C.<br>
-Releasing what you pressed releases the note 🤯
+Releasing what you pressed releases the note
 
 And then there's two motion controls: the "bow", and the "finger placement"
 
