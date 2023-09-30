@@ -18,7 +18,7 @@ And then there's two motion controls: the "bow", and the "finger placement"
 
 The "bow" is just the velocity on the x axis (I think lol. One of the axises) of the right controller while a button on the right controller is pressed. It controls midi controller #16. You could map it to control a level knob of something. You press a button on the right controller and wave it around and it'll change that controller based on the speed in um a direction. Idk I just try to find whatever direction affects the midi output the most, or find the direction that doesn't affect it and go perpendicular to that
 
-The  "finger placement" is the height of the left controller while a button on the left controller is pressed. It controlls pitch bend
+The  "finger placement" is the height of the left controller while a button on the left controller is pressed. It controls pitch bend
 
 So if I wanted to link the speed of the right controller to maybe a level knob in the Serum plugin in fl studio: 
 
