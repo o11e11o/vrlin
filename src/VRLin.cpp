@@ -174,7 +174,7 @@ int main()
                             // print that out :v to see that :V::VV:V::V
                             //  std::cout << std::to_string(speed)+"\n";
 
-                            // Control Change: 176
+                            // Control change on channel 0: 176
                             message[0] = 176;
                             // change to control 16 (general purpose controller 1 https://www.cs.cmu.edu/~music/cmsip/readings/davids-midi-spec.htm)
                             message[1] = 16;
@@ -182,7 +182,9 @@ int main()
                             //  looks like speed is usually between -1 and 1, and messages to controllers are 1 byte (256 numbers) so yer.
                             //  message[2]=(unsigned char)(256-speed*256);
                             // HAS TO BE BETWEEN 0 AND 127 otherwise it breaks stuff :(
+                            // yer it ignores the last bit sooo yer
                             message[2] = (int)(127 - exp(-speed) * 127);
+
 
                             midiout->sendMessage(&message);
                         }
@@ -191,12 +193,13 @@ int main()
                             // Erm pitch bend code: 224 0xe0 or the code for a pitch bend on channel 0
                             // message[0] = 224;
 
-                            // but erm for now I'm going to make it another midi controller that I'll map to the pitch bend
-                            // Control Change: 176
-                            message[0] = 176;
+                            // old "finger position" thing. Just controlled ctrl 17
+                            // // but erm for now I'm going to make it another midi controller that I'll map to the pitch bend
+                            // // Control Change: 176
+                            // message[0] = 176;
 
-                            // change to control 17 (general purpose controller 2 https://www.cs.cmu.edu/~music/cmsip/readings/davids-midi-spec.htm)
-                            message[1] = 17;
+                            // // change to control 17 (general purpose controller 2 https://www.cs.cmu.edu/~music/cmsip/readings/davids-midi-spec.htm)
+                            // message[1] = 17;
 
                             vr::HmdMatrix34_t left_controller_matrix = controllerPose.mDeviceToAbsoluteTracking;
 
@@ -207,16 +210,28 @@ int main()
                             //[1][3] is vertical and a comfortable left hand height is -0.7
                             float left_hand_vertical_offset = left_controller_matrix.m[1][3] + 0.7;
 
-                            int left_controller_message = (int)(left_hand_vertical_offset * 127 + 63);
+                            // old CC message
+                            // int left_controller_message = (int)(left_hand_vertical_offset * 127 + 63);
+                            // // range is from 0 to 127. From seeing the ranges bring printed out and how
+                            // // it maps in fl studio
+                            // left_controller_message = std::min(std::max(left_controller_message, 0), 127);
+                            // // // and let's just for now assume range of roughly -1 to 1 (it's not close to that but aoeisfjai)
+                            // // message[2] = left_controller_message;
 
-                            // I thiiink the range is from 0 to 127. From seeing the ranges bring printed out and how
-                            // it maps in fl studio
-                            left_controller_message = std::min(std::max(left_controller_message, 0), 127);
+                            //so for a pitch bend number between 0-16383 n, msb is n/128 (which should only go up to 127 since 16383 is 1 less than being able to divide by 128 128 times)
+                            //and lsb is n%128 (which should also only go up to 127 cuz that's how modulo works)
 
-                            // std::cout << "\t"+std::to_string(left_controller_message)+"B\n";
+                            //scaling, flooring, and limiting it to values between 0 and 16383
+                            int pitch_bend_number = std::min(std::max((int)(left_hand_vertical_offset * 16383 + 8191),0),16383);
 
-                            // and let's just for now assume range of roughly -1 to 1 (it's not close to that but aoeisfjai)
-                            message[2] = left_controller_message;
+                            // Pitch bend on channel 0: 224
+                            message[0] = 224;
+                            // bend lsb
+                            message[1] = pitch_bend_number%128;
+                            // bend msb
+                            message[2] = pitch_bend_number/128;
+
+                            //sooo I guess ummm probably lsb and msb both take numbers 0-127 (7 bits) and together they form a 14-bit number 0-16383
                             midiout->sendMessage(&message);
                         }
                     }
